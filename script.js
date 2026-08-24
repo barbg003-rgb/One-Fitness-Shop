@@ -1,3 +1,6 @@
+let shopConfig = {};
+let activeProduct = null;
+
 async function loadShop() {
   const grid = document.getElementById("product-grid");
 
@@ -10,14 +13,21 @@ async function loadShop() {
     return;
   }
 
+  shopConfig = data;
+
   document.getElementById("shop-name").textContent = data.shopName || "My Shop";
   document.getElementById("tagline").textContent = data.tagline || "";
   document.title = data.shopName || "Shop Window";
 
-  const currency = data.currency || "";
-  const contactLink = data.contactLink || "";
-  const contactLabel = data.contactLabel || "Message me";
+  const logo = document.getElementById("shop-logo");
+  if (data.logo) {
+    logo.src = data.logo;
+    logo.alt = data.shopName || "Logo";
+    logo.hidden = false;
+  }
 
+  const currency = data.currency || "";
+  const orderButtonLabel = data.orderButtonLabel || "Order via WhatsApp";
   const products = Array.isArray(data.products) ? data.products : [];
 
   if (products.length === 0) {
@@ -66,15 +76,14 @@ async function loadShop() {
     info.appendChild(price);
     info.appendChild(description);
 
-    if (contactLink) {
-      const button = document.createElement("a");
-      button.className = "contact-button" + (product.sold ? " disabled" : "");
-      button.href = contactLink;
-      button.target = "_blank";
-      button.rel = "noopener noreferrer";
-      button.textContent = product.sold ? "Sold" : contactLabel;
-      info.appendChild(button);
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "contact-button" + (product.sold ? " disabled" : "");
+    button.textContent = product.sold ? "Sold" : orderButtonLabel;
+    if (!product.sold) {
+      button.addEventListener("click", () => openOrderModal(product, currency));
     }
+    info.appendChild(button);
 
     card.appendChild(imageWrap);
     card.appendChild(info);
@@ -82,4 +91,53 @@ async function loadShop() {
   }
 }
 
+function openOrderModal(product, currency) {
+  activeProduct = product;
+  document.getElementById("order-product-name").textContent =
+    `${product.name}${product.price ? ` — ${currency}${product.price}` : ""}`;
+  document.getElementById("order-name").value = "";
+  document.getElementById("order-quantity").value = 1;
+  document.getElementById("order-notes").value = "";
+  document.getElementById("order-backdrop").hidden = false;
+  document.getElementById("order-name").focus();
+}
+
+function closeOrderModal() {
+  document.getElementById("order-backdrop").hidden = true;
+  activeProduct = null;
+}
+
+function setupOrderModal() {
+  document.getElementById("order-close").addEventListener("click", closeOrderModal);
+
+  document.getElementById("order-backdrop").addEventListener("click", (event) => {
+    if (event.target.id === "order-backdrop") closeOrderModal();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeOrderModal();
+  });
+
+  document.getElementById("order-form").addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (!activeProduct) return;
+
+    const customerName = document.getElementById("order-name").value.trim();
+    const quantity = document.getElementById("order-quantity").value || "1";
+    const notes = document.getElementById("order-notes").value.trim();
+    const currency = shopConfig.currency || "";
+
+    let message = `Hi! I'd like to order:\n${quantity} x ${activeProduct.name}`;
+    if (activeProduct.price) message += ` (${currency}${activeProduct.price} each)`;
+    message += `\n\nName: ${customerName}`;
+    if (notes) message += `\nNotes: ${notes}`;
+
+    const number = (shopConfig.whatsappNumber || "").replace(/[^0-9]/g, "");
+    const url = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+    closeOrderModal();
+  });
+}
+
+setupOrderModal();
 loadShop();

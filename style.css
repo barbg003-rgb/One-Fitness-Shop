@@ -1,12 +1,12 @@
 :root {
-  --bg: #faf9f7;
-  --card-bg: #ffffff;
-  --text: #1c1c1c;
-  --muted: #6b6b6b;
-  --accent: #1c1c1c;
-  --accent-contrast: #ffffff;
-  --border: #e7e5e1;
-  --sold-bg: rgba(28, 28, 28, 0.55);
+  --bg: #1a1c20;
+  --card-bg: #24262b;
+  --text: #ffffff;
+  --muted: #a3a6ac;
+  --accent: #ffffff;
+  --accent-contrast: #1a1c20;
+  --border: #34363c;
+  --sold-bg: rgba(0, 0, 0, 0.65);
 }
 
 * {
@@ -15,7 +15,7 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: "Oswald", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
 }
@@ -25,16 +25,26 @@ body {
   padding: 48px 20px 32px;
 }
 
+.shop-logo {
+  max-width: 220px;
+  max-height: 120px;
+  margin: 0 auto 16px;
+  display: block;
+}
+
 .site-header h1 {
   margin: 0 0 8px;
-  font-size: 2rem;
+  font-size: 2.4rem;
   font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
 }
 
 .site-header p {
   margin: 0;
   color: var(--muted);
   font-size: 1.05rem;
+  font-weight: 300;
 }
 
 .product-grid {
@@ -64,13 +74,13 @@ body {
 
 .product-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
 }
 
 .product-image-wrap {
   position: relative;
   aspect-ratio: 1 / 1;
-  background: #f0efec;
+  background: #2d2f34;
 }
 
 .product-image-wrap img {
@@ -107,8 +117,10 @@ body {
 
 .product-name {
   font-weight: 600;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 .product-price {
@@ -120,6 +132,7 @@ body {
 .product-description {
   color: var(--muted);
   font-size: 0.9rem;
+  font-weight: 300;
   margin: 0 0 8px;
   flex: 1;
 }
@@ -130,15 +143,20 @@ body {
   background: var(--accent);
   color: var(--accent-contrast);
   text-decoration: none;
+  border: none;
   padding: 10px 14px;
   border-radius: 8px;
   font-weight: 600;
   font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  font-family: inherit;
 }
 
 .contact-button.disabled {
-  background: #cfcdc8;
-  color: #706e69;
+  background: #46484d;
+  color: #86888d;
   pointer-events: none;
 }
 
@@ -149,19 +167,84 @@ body {
   padding: 24px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #17181a;
-    --card-bg: #212225;
-    --text: #f2f1ee;
-    --muted: #9a9995;
-    --accent: #f2f1ee;
-    --accent-contrast: #17181a;
-    --border: #34353a;
-    --sold-bg: rgba(0, 0, 0, 0.6);
-  }
+.order-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 100;
+}
 
-  .product-image-wrap {
-    background: #2a2b2e;
-  }
+.order-modal {
+  position: relative;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px 24px 24px;
+  width: 100%;
+  max-width: 380px;
+}
+
+.order-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.order-modal h2 {
+  margin: 0 0 4px;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+}
+
+.order-product-name {
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+#order-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+#order-form label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+#order-form input,
+#order-form textarea {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  resize: vertical;
+}
+
+#order-form input:focus,
+#order-form textarea:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.order-submit {
+  margin-top: 18px;
+  width: 100%;
 }

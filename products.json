@@ -1,8 +1,9 @@
 {
-  "shopName": "My Shop",
-  "tagline": "Browse what I'm selling right now",
-  "contactLink": "https://wa.me/10000000000",
-  "contactLabel": "Message me to buy",
+  "shopName": "ONE",
+  "tagline": "Fuel your training. Shop the gear.",
+  "logo": "images/logo.png",
+  "whatsappNumber": "10000000000",
+  "orderButtonLabel": "Order via WhatsApp",
   "currency": "£",
   "products": [
     {
@@ -18,6 +19,13 @@
       "image": "images/placeholder.svg",
       "description": "You can add as many products as you like by copying this block.",
       "sold": true
+    },
+    {
+      "name": "Third Item",
+      "price": "12.50",
+      "image": "images/placeholder.svg",
+      "description": "The grid automatically fits as many products as you add.",
+      "sold": false
     }
   ]
 }

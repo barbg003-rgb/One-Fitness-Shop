@@ -1,6 +1,6 @@
-# Shop Window
+# ONE Shop Window
 
-A simple webpage that shows your products (photo, name, price) so you can link it in your bio. There's no checkout — people just view items and, if you set it up, tap a button to message you about buying.
+A simple webpage that shows your products (photo, name, price) so you can link it in your bio. There's no checkout — people fill in a quick order form and it opens WhatsApp with their order already typed out for them to send you.
 
 ## How to add or edit a product
 
@@ -32,11 +32,29 @@ Put image files (`.jpg`, `.png`, etc.) in the `images` folder, then reference th
 
 At the top of `products.json`:
 
-- **shopName** — the title shown at the top of the page.
+- **shopName** — the title shown at the top of the page (used even if you have a logo, e.g. for the browser tab).
 - **tagline** — the short line under the title.
+- **logo** — path to your logo image, e.g. `images/logo.png`. Leave the file out and remove this line if you don't want a logo.
 - **currency** — the symbol shown before each price, e.g. `£`, `$`, `€`.
-- **contactLink** — where the "message me" button goes. For WhatsApp, use `https://wa.me/<phone number with country code, no + or spaces>`, e.g. `https://wa.me/447911123456`. You can also use an Instagram profile link or an email link (`mailto:you@example.com`).
-- **contactLabel** — the text on the button, e.g. "Message me to buy".
+- **whatsappNumber** — your WhatsApp number, digits only, with country code, no `+`, spaces or dashes. Example: a UK number `07911 123456` becomes `447911123456`. This is where orders get sent.
+- **orderButtonLabel** — the text on each product's order button, e.g. "Order via WhatsApp".
+
+## How the order button works
+
+Each product has an "Order" button. Clicking it opens a small form (name, quantity, notes). Submitting the form opens WhatsApp with a message already typed out, e.g.:
+
+> Hi! I'd like to order:
+> 2 x Blue Ceramic Mug (£12.00 each)
+>
+> Name: Alex Smith
+> Notes: Gift wrap please
+
+The customer just has to hit send in WhatsApp — nothing is charged or stored anywhere, it's just a pre-filled message.
+
+## Changing the look
+
+- **Colours** — edit the `:root { ... }` values at the top of `style.css` (e.g. `--bg` is the page background, `--text` is the text colour, `--accent` is the button colour).
+- **Font** — the site uses Google's "Oswald" font, loaded in `index.html`. To use a different font, swap the `<link href="https://fonts.googleapis.com/css2?family=...">` line for another Google Font, and update `font-family: "Oswald"` in `style.css` to match.
 
 ## Publishing with GitHub Pages
 
