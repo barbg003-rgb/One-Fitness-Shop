@@ -2,29 +2,36 @@
   "shopName": "ONE",
   "tagline": "Fuel your training. Shop the gear.",
   "logo": "images/logo.png",
-  "whatsappNumber": "10000000000",
+  "whatsappNumber": "PHONE-NUMBER-REDACTED",
   "orderButtonLabel": "Order via WhatsApp",
   "currency": "£",
   "products": [
     {
-      "name": "Example Product",
-      "price": "19.99",
-      "image": "images/placeholder.svg",
-      "description": "Replace this with a real product. Add its photo to the images folder and update this entry.",
+      "name": "Gym Top - Black - Acid Washed Oversized",
+      "price": "24.00",
+      "image": "images/black-acid-washed-gym-top.jpg",
+      "description": "",
       "sold": false
     },
     {
-      "name": "Another Item",
-      "price": "35.00",
-      "image": "images/placeholder.svg",
-      "description": "You can add as many products as you like by copying this block.",
-      "sold": true
+      "name": "Gym Top - Beige - Loose Fit",
+      "price": "30.00",
+      "image": "images/beige-loose-fit-gym-top.jpg",
+      "description": "",
+      "sold": false
     },
     {
-      "name": "Third Item",
-      "price": "12.50",
-      "image": "images/placeholder.svg",
-      "description": "The grid automatically fits as many products as you add.",
+      "name": "Gym Top - White - Loose Fit",
+      "price": "25.00",
+      "image": "images/white-loose-fit-gym-top.jpg",
+      "description": "",
+      "sold": false
+    },
+    {
+      "name": "Gym Top - Grey - Oversized",
+      "price": "25.00",
+      "image": "images/grey-oversized-gym-top.jpg",
+      "description": "",
       "sold": false
     }
   ]
