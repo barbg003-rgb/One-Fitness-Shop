@@ -64,6 +64,8 @@ The customer just has to hit send in WhatsApp — nothing is charged or stored a
 4. GitHub gives you a public link like `https://yourusername.github.io/shop-window/` — that's what you put in your bio.
 5. Any time you edit `products.json` or add a photo and push the change (or edit directly on GitHub's website and commit), the live page updates automatically within a minute or two.
 
+**If you edit `style.css` or `script.js`:** browsers can cache these files and keep showing an old version. In `index.html`, bump the `?v=2` number on the `style.css?v=2` and `script.js?v=2` lines (to `?v=3`, `?v=4`, etc.) whenever you change either file — that forces visitors' browsers to fetch the new version instead of an old cached one. `products.json` doesn't need this, it's already set up to always load fresh. If a visitor (or you) ever sees an old version despite this, a hard refresh (Ctrl+Shift+R on Windows) clears it.
+
 ## Trying it locally before publishing
 
 Because the page loads `products.json` with `fetch`, opening `index.html` directly by double-clicking it won't work in most browsers (it blocks local file loading). To preview it on your computer, run a simple local server from this folder, for example:
