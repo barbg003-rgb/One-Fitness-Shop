@@ -99,7 +99,6 @@ function openOrderModal(product, currency) {
   document.getElementById("order-quantity").value = 1;
   document.getElementById("order-notes").value = "";
   document.getElementById("order-backdrop").hidden = false;
-  document.getElementById("order-name").focus();
 }
 
 function closeOrderModal() {
