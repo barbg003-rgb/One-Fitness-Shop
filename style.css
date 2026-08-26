@@ -33,6 +33,16 @@ body {
   display: block;
 }
 
+@media (max-width: 480px) {
+  .site-header {
+    padding: 28px 20px 20px;
+  }
+
+  .shop-logo {
+    max-height: 130px;
+  }
+}
+
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -66,6 +76,7 @@ body {
 .product-image-wrap {
   position: relative;
   aspect-ratio: 1 / 1;
+  min-height: 0;
   background: #2d2f34;
 }
 
@@ -224,7 +235,7 @@ body {
   border-radius: 8px;
   padding: 10px 12px;
   font-family: inherit;
-  font-size: 0.95rem;
+  font-size: 16px;
   resize: vertical;
 }
 
