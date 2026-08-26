@@ -15,8 +15,6 @@ async function loadShop() {
 
   shopConfig = data;
 
-  document.getElementById("shop-name").textContent = data.shopName || "My Shop";
-  document.getElementById("tagline").textContent = data.tagline || "";
   document.title = data.shopName || "Shop Window";
 
   const logo = document.getElementById("shop-logo");
