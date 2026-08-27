@@ -106,9 +106,41 @@ function closeOrderModal() {
   activeProduct = null;
 }
 
+function copyOrderMessage(message) {
+  const copyBtn = document.getElementById("order-copy");
+  const showCopied = () => {
+    copyBtn.textContent = "Copied!";
+    setTimeout(() => {
+      copyBtn.textContent = "Copy message";
+    }, 1500);
+  };
+
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(message).then(showCopied).catch(() => fallbackCopy(message, showCopied));
+  } else {
+    fallbackCopy(message, showCopied);
+  }
+}
+
+function fallbackCopy(message, onSuccess) {
+  const box = document.getElementById("order-confirmation-message");
+  box.focus();
+  box.select();
+  try {
+    document.execCommand("copy");
+    onSuccess();
+  } catch (err) {
+    // Selection is still visible for the customer to copy manually.
+  }
+}
+
 function setupOrderModal() {
   document.getElementById("order-close").addEventListener("click", closeOrderModal);
   document.getElementById("order-done").addEventListener("click", closeOrderModal);
+
+  document.getElementById("order-copy").addEventListener("click", () => {
+    copyOrderMessage(document.getElementById("order-confirmation-message").value);
+  });
 
   document.getElementById("order-backdrop").addEventListener("click", (event) => {
     if (event.target.id === "order-backdrop") closeOrderModal();
@@ -135,15 +167,13 @@ function setupOrderModal() {
     const confirmationBox = document.getElementById("order-confirmation-message");
     confirmationBox.value = message;
 
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(message).catch(() => {});
-    }
-
     const link = shopConfig.instagramLink || "https://ig.me";
-    window.open(link, "_blank", "noopener,noreferrer");
+    document.getElementById("order-open-instagram").href = link;
 
     document.getElementById("order-form").hidden = true;
     document.getElementById("order-confirmation").hidden = false;
+
+    copyOrderMessage(message);
   });
 }
 

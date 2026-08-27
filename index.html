@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=5" />
+  <link rel="stylesheet" href="style.css?v=6" />
 </head>
 <body>
   <header class="site-header">
@@ -42,13 +42,15 @@
       </form>
 
       <div id="order-confirmation" hidden>
-        <p class="order-confirmation-text">Your order details have been copied. Paste them into the Instagram chat that just opened, then hit send.</p>
+        <p class="order-confirmation-text">Copy your order details below, then tap "Open Instagram" and paste them into the chat.</p>
         <textarea id="order-confirmation-message" class="order-message-box" rows="6" readonly></textarea>
-        <button type="button" id="order-done" class="contact-button order-submit">Done</button>
+        <button type="button" id="order-copy" class="contact-button order-copy-btn">Copy message</button>
+        <a id="order-open-instagram" class="contact-button order-submit" href="#">Open Instagram</a>
+        <button type="button" id="order-done" class="order-done-link">Done</button>
       </div>
     </div>
   </div>
 
-  <script src="script.js?v=5"></script>
+  <script src="script.js?v=6"></script>
 </body>
 </html>

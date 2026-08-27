@@ -49,10 +49,12 @@ Each product has an "Order" button. Clicking it opens a small form (name, quanti
    >
    > Name: Alex Smith
    > Notes: Gift wrap please
-2. Copies that message to the customer's clipboard.
-3. Opens your Instagram DMs in a new tab, and shows the message on-screen so they can paste it in even if the clipboard copy didn't work (some browsers block clipboard access).
+2. Shows that message on-screen and copies it to the customer's clipboard automatically.
+3. Gives them an **"Open Instagram"** button (and a **"Copy message"** button in case the automatic copy didn't work) to tap themselves, which takes them to your DMs to paste and send it.
 
 Nothing is charged or stored anywhere — it's just a pre-written message the customer pastes and sends themselves.
+
+**Why the customer has to tap "Open Instagram" themselves, rather than it opening automatically:** most people will open your bio link *from inside the Instagram app*, which shows pages in its own built-in browser. That built-in browser blocks automatic pop-ups/redirects back into Instagram — it only allows the hand-off when the *person* taps a real link themselves. That's why this is a deliberate tap rather than something automatic.
 
 ## Changing the look
 

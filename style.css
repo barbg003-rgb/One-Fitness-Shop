@@ -258,6 +258,28 @@ body {
   line-height: 1.5;
 }
 
+.order-copy-btn {
+  width: 100%;
+  margin-top: 12px;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.order-done-link {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 0.85rem;
+  text-decoration: underline;
+  padding: 12px 0 0;
+  cursor: pointer;
+}
+
 .order-message-box {
   width: 100%;
   background: var(--bg);
