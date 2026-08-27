@@ -1,6 +1,6 @@
 # ONE Shop Window
 
-A simple webpage that shows your products (photo, name, price) so you can link it in your bio. There's no checkout — people fill in a quick order form and it opens WhatsApp with their order already typed out for them to send you.
+A simple webpage that shows your products (photo, name, price) so you can link it in your bio. There's no checkout — people fill in a quick order form, their order details get copied to their clipboard, and it opens Instagram DMs for them to paste and send to you.
 
 ## How to add or edit a product
 
@@ -36,20 +36,23 @@ At the top of `products.json`:
 - **tagline** — the short line under the title.
 - **logo** — path to your logo image, e.g. `images/logo.png`. Leave the file out and remove this line if you don't want a logo.
 - **currency** — the symbol shown before each price, e.g. `£`, `$`, `€`.
-- **whatsappNumber** — your WhatsApp number, digits only, with country code, no `+`, spaces or dashes. Example: a UK number `07911 123456` becomes `447911123456`. This is where orders get sent.
-- **orderButtonLabel** — the text on each product's order button, e.g. "Order via WhatsApp".
+- **instagramLink** — your Instagram DM link, e.g. `https://ig.me/m/yourusername`. This is where orders get sent. (Instagram doesn't support pre-filling a message the way WhatsApp does, which is why the order details get copied to the clipboard instead — see below.)
+- **orderButtonLabel** — the text on each product's order button, e.g. "Order via Instagram".
 
 ## How the order button works
 
-Each product has an "Order" button. Clicking it opens a small form (name, quantity, notes). Submitting the form opens WhatsApp with a message already typed out, e.g.:
+Each product has an "Order" button. Clicking it opens a small form (name, quantity, notes). Submitting the form:
 
-> Hi! I'd like to order:
-> 2 x Blue Ceramic Mug (£12.00 each)
->
-> Name: Alex Smith
-> Notes: Gift wrap please
+1. Builds an order message, e.g.:
+   > Hi! I'd like to order:
+   > 2 x Blue Ceramic Mug (£12.00 each)
+   >
+   > Name: Alex Smith
+   > Notes: Gift wrap please
+2. Copies that message to the customer's clipboard.
+3. Opens your Instagram DMs in a new tab, and shows the message on-screen so they can paste it in even if the clipboard copy didn't work (some browsers block clipboard access).
 
-The customer just has to hit send in WhatsApp — nothing is charged or stored anywhere, it's just a pre-filled message.
+Nothing is charged or stored anywhere — it's just a pre-written message the customer pastes and sends themselves.
 
 ## Changing the look
 

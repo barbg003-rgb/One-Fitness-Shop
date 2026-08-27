@@ -26,9 +26,10 @@ body {
 }
 
 .shop-logo {
-  max-width: 420px;
+  max-width: min(220px, 100%);
   max-height: 220px;
-  width: 100%;
+  width: auto;
+  height: auto;
   margin: 0 auto;
   display: block;
 }
@@ -248,4 +249,23 @@ body {
 .order-submit {
   margin-top: 18px;
   width: 100%;
+}
+
+.order-confirmation-text {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0 0 12px;
+  line-height: 1.5;
+}
+
+.order-message-box {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  resize: vertical;
 }

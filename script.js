@@ -25,7 +25,7 @@ async function loadShop() {
   }
 
   const currency = data.currency || "";
-  const orderButtonLabel = data.orderButtonLabel || "Order via WhatsApp";
+  const orderButtonLabel = data.orderButtonLabel || "Order via Instagram";
   const products = Array.isArray(data.products) ? data.products : [];
 
   if (products.length === 0) {
@@ -96,6 +96,8 @@ function openOrderModal(product, currency) {
   document.getElementById("order-name").value = "";
   document.getElementById("order-quantity").value = 1;
   document.getElementById("order-notes").value = "";
+  document.getElementById("order-form").hidden = false;
+  document.getElementById("order-confirmation").hidden = true;
   document.getElementById("order-backdrop").hidden = false;
 }
 
@@ -106,6 +108,7 @@ function closeOrderModal() {
 
 function setupOrderModal() {
   document.getElementById("order-close").addEventListener("click", closeOrderModal);
+  document.getElementById("order-done").addEventListener("click", closeOrderModal);
 
   document.getElementById("order-backdrop").addEventListener("click", (event) => {
     if (event.target.id === "order-backdrop") closeOrderModal();
@@ -129,10 +132,18 @@ function setupOrderModal() {
     message += `\n\nName: ${customerName}`;
     if (notes) message += `\nNotes: ${notes}`;
 
-    const number = (shopConfig.whatsappNumber || "").replace(/[^0-9]/g, "");
-    const url = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
-    window.open(url, "_blank", "noopener,noreferrer");
-    closeOrderModal();
+    const confirmationBox = document.getElementById("order-confirmation-message");
+    confirmationBox.value = message;
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(message).catch(() => {});
+    }
+
+    const link = shopConfig.instagramLink || "https://ig.me";
+    window.open(link, "_blank", "noopener,noreferrer");
+
+    document.getElementById("order-form").hidden = true;
+    document.getElementById("order-confirmation").hidden = false;
   });
 }
 

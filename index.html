@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=4" />
+  <link rel="stylesheet" href="style.css?v=5" />
 </head>
 <body>
   <header class="site-header">
@@ -38,11 +38,17 @@
         <label for="order-notes">Notes (size, colour, delivery preference…)</label>
         <textarea id="order-notes" rows="3" placeholder="Optional"></textarea>
 
-        <button type="submit" class="contact-button order-submit">Send order via WhatsApp</button>
+        <button type="submit" class="contact-button order-submit">Continue to Instagram</button>
       </form>
+
+      <div id="order-confirmation" hidden>
+        <p class="order-confirmation-text">Your order details have been copied. Paste them into the Instagram chat that just opened, then hit send.</p>
+        <textarea id="order-confirmation-message" class="order-message-box" rows="6" readonly></textarea>
+        <button type="button" id="order-done" class="contact-button order-submit">Done</button>
+      </div>
     </div>
   </div>
 
-  <script src="script.js?v=4"></script>
+  <script src="script.js?v=5"></script>
 </body>
 </html>
